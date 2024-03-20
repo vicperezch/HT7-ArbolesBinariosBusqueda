@@ -7,6 +7,12 @@ package src;
  */
 public class Main {
     public static void main(String[] args) {
-        
+        Reader reader = new Reader("diccionario.txt");
+        try {
+            BinaryTree<String, String> words = reader.readDictionary();
+            words.inOrder();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

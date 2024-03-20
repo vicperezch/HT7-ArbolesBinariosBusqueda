@@ -16,16 +16,13 @@ public class BinaryTreeTest {
      */
     @Test
     public void testInsertingElements() {
-        BinaryTree<Integer> tree = new BinaryTree<Integer>();
-        tree.insert(5);
-        tree.insert(3);
-        tree.insert(7);
-        tree.insert(2);
-        tree.insert(4);
-        tree.insert(6);
-        tree.insert(8);
-        tree.insert(9);
-        tree.insert(1);
+        BinaryTree<String, String> tree = new BinaryTree<>();
+        tree.insert("hello", "hola");
+        tree.insert("goodbye", "adiós");
+        tree.insert("house", "casa");
+        tree.insert("dog", "perro");
+        tree.insert("cat", "gato");
+        tree.insert("tree", "árbol");
     }
 
 
@@ -34,19 +31,16 @@ public class BinaryTreeTest {
      */
     @Test
     public void testInsertingRepeatedElements() {
-        BinaryTree<Integer> tree = new BinaryTree<Integer>();
-        tree.insert(5);
-        tree.insert(3);
-        tree.insert(7);
-        tree.insert(2);
-        tree.insert(4);
-        tree.insert(6);
-        tree.insert(8);
-        tree.insert(9);
-        tree.insert(1);
+        BinaryTree<String, String> tree = new BinaryTree<>();
+        tree.insert("hello", "hola");
+        tree.insert("goodbye", "adiós");
+        tree.insert("house", "casa");
+        tree.insert("dog", "perro");
+        tree.insert("cat", "gato");
+        tree.insert("tree", "árbol");
 
         try {
-            tree.insert(1);
+            tree.insert("hello", "hola");
             assert false;
 
         } catch (IllegalArgumentException e) {
@@ -60,18 +54,15 @@ public class BinaryTreeTest {
      */
     @Test
     public void testSearchingElement() {
-        BinaryTree<Integer> tree = new BinaryTree<Integer>();
-        tree.insert(5);
-        tree.insert(3);
-        tree.insert(7);
-        tree.insert(2);
-        tree.insert(4);
-        tree.insert(6);
-        tree.insert(8);
-        tree.insert(9);
-        tree.insert(1);
+        BinaryTree<String, String> tree = new BinaryTree<>();
+        tree.insert("hello", "hola");
+        tree.insert("goodbye", "adiós");
+        tree.insert("house", "casa");
+        tree.insert("dog", "perro");
+        tree.insert("cat", "gato");
+        tree.insert("tree", "árbol");
 
-        assertTrue(tree.search(5));
+        assertTrue(tree.search("hello"));
     }
 
 
@@ -80,18 +71,15 @@ public class BinaryTreeTest {
      */
     @Test
     public void testSearchingNonExistentElement() {
-        BinaryTree<Integer> tree = new BinaryTree<Integer>();
-        tree.insert(5);
-        tree.insert(3);
-        tree.insert(7);
-        tree.insert(2);
-        tree.insert(4);
-        tree.insert(6);
-        tree.insert(8);
-        tree.insert(9);
-        tree.insert(1);
+        BinaryTree<String, String> tree = new BinaryTree<>();
+        tree.insert("hello", "hola");
+        tree.insert("goodbye", "adiós");
+        tree.insert("house", "casa");
+        tree.insert("dog", "perro");
+        tree.insert("cat", "gato");
+        tree.insert("tree", "árbol");
 
-        assertTrue(!tree.search(10));
+        assertTrue(!tree.search("world"));
     }
 
 
@@ -100,10 +88,10 @@ public class BinaryTreeTest {
      */
     @Test
     public void testSearchingElementInEmptyTree() {
-        BinaryTree<Integer> tree = new BinaryTree<Integer>();
+        BinaryTree<String, String> tree = new BinaryTree<>();
 
         try {
-            tree.search(5);
+            tree.search("hello");
             assert false;
 
         } catch (IllegalArgumentException e) {

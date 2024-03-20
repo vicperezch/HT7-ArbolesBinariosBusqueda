@@ -5,9 +5,11 @@ package src;
  * @date 19/03/2024
  * Clase que representa una asociación del diccionario
  */
-public class Association<K,V> implements Comparable<Association<K,V>> {
+public class Association<K, V>  {
     private K key;
     private V value;
+    private Association<K, V> left;
+    private Association<K, V> right;
 
 
     /**
@@ -18,6 +20,8 @@ public class Association<K,V> implements Comparable<Association<K,V>> {
     public Association(K key, V value) {
         this.key = key;
         this.value = value;
+        this.left = null;
+        this.right = null;
     }
 
 
@@ -49,9 +53,37 @@ public class Association<K,V> implements Comparable<Association<K,V>> {
     }
 
 
-    @Override
-    public int compareTo(Association<K, V> o) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'compareTo'");
+    /**
+     * Método que devuelve el nodo izquierdo
+     * @return Nodo izquierdo
+     */
+    public Association<K, V> getLeft() {
+        return this.left;
+    }
+
+
+    /**
+     * Método que devuelve el nodo derecho
+     * @return Nodo derecho
+     */
+    public Association<K, V> getRight() {
+        return this.right;
+    }
+
+
+    /**
+     * Cambia el nodo izquierdo
+     * @param left Nuevo nodo izquierdo
+     */
+    public void setLeft(Association<K, V> left) {
+        this.left = left;
+    }
+
+    /**
+     * Cambia el nodo derecho
+     * @param right Nuevo nodo derecho
+     */
+    public void setRight(Association<K, V> right) {
+        this.right = right;
     }
 }

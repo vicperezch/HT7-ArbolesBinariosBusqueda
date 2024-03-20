@@ -3,10 +3,10 @@ package src;
 /**
  * @author Victor Pérez
  * @date 19/03/2024
- * Clase que modela un árbol binario de búsqueda
+ * Clase que modela un árbol binario de búsqueda formado por asociaciones
  */
-public class BinaryTree<E extends Comparable<E>> {
-    private Node<E> root;
+public class BinaryTree<K extends Comparable<K>, V extends Comparable <V>> {
+    private Association<K, V> root;
 
     /**
      * Constructor de la clase
@@ -17,43 +17,45 @@ public class BinaryTree<E extends Comparable<E>> {
 
 
     /**
-     * Inserta un nuevo valor en el árbol
+     * Inserta una nueva asociación en el árbol
+     * @param key Llave a insertar
      * @param value Valor a insertar
      */
-    public void insert(E value) {
+    public void insert(K key, V value) {
         if (this.root == null) {
-            this.root = new Node<E>(value);
+            this.root = new Association<K, V>(key, value);
 
         } else {
-            insert(value, this.root);
+            insert(key, value, this.root);
         }
     }
 
 
     /**
      * Recorre el árbol para insertar un elemento nuevo de manera recursiva
+     * @param key Llave a insertar
      * @param value Valor a insertar
      * @param current Posición actual en los nodos
      */
-    private void insert(E value, Node<E> current) {
-        if (value.compareTo(current.getValue()) == 0) {
+    private void insert(K key, V value, Association<K, V> current) {
+        if (key.compareTo(current.getKey()) == 0) {
             throw new IllegalArgumentException("El valor ya existe en el árbol");
         }
 
-        if (value.compareTo(current.getValue()) < 0) {
+        if (key.compareTo(current.getKey()) < 0) {
             if (current.getLeft() == null) {
-                current.setLeft(new Node<E>(value));
+                current.setLeft(new Association<K, V>(key, value));
 
             } else {
-                insert(value, current.getLeft()); 
+                insert(key, value, current.getLeft()); 
             }
 
         } else {
             if (current.getRight() == null) {
-                current.setRight(new Node<E>(value));
+                current.setRight(new Association<K, V>(key, value));
 
             } else {
-                insert(value, current.getRight());
+                insert(key, value, current.getRight());
             }
         }
     }
@@ -61,39 +63,39 @@ public class BinaryTree<E extends Comparable<E>> {
 
     /**
      * Busca un valor en el árbol
-     * @param value Valor a buscar
+     * @param key Valor a buscar
      * @return true si el valor está en el árbol, false en caso contrario
      */
-    public boolean search(E value) {
+    public boolean search(K key) {
         if (this.root == null) {
             throw new IllegalArgumentException("El árbol está vacío");
         }
 
-        if (value.compareTo(this.root.getValue()) == 0) {
+        if (key.compareTo(this.root.getKey()) == 0) {
             return true;
 
         } else {
-            return search(value, this.root);
+            return search(key, this.root);
         }
     }
 
 
     /**
      * Recorre el árbol de manera recursiva para buscar un valor
-     * @param value Valor a buscar
+     * @param key Valor a buscar
      * @param current Posición actual en los nodos
      * @return true si el valor es igual al del nodo, false en caso contrario
      */
-    private boolean search(E value, Node<E> current) {
-        if (value.compareTo(current.getValue()) == 0) {
+    private boolean search(K key, Association<K, V> current) {
+        if (key.compareTo(current.getKey()) == 0) {
             return true;
 
-        } else if (value.compareTo(current.getValue()) < 0) {
+        } else if (key.compareTo(current.getKey()) < 0) {
             if (current.getLeft() == null) {
                 return false;
 
             } else {
-                return search(value, current.getLeft());
+                return search(key, current.getLeft());
             }
 
         } else {
@@ -101,7 +103,7 @@ public class BinaryTree<E extends Comparable<E>> {
                 return false;
 
             } else {
-                return search(value, current.getRight());
+                return search(key, current.getRight());
             }
         }
     }
@@ -129,14 +131,14 @@ public class BinaryTree<E extends Comparable<E>> {
      * @param current Posición actual en los nodos
      * @return Contenido del árbol en orden
      */
-    private String inOrder(Node<E> current) {
+    private String inOrder(Association<K, V> current) {
         String content = "";
 
         if (current.getLeft() != null) {
             content += inOrder(current.getLeft());
         }
 
-        content += current.getValue() + "\n";
+        content += current.getKey() + " - " + current.getValue() + "\n";
 
         if (current.getRight() != null) {
             content += inOrder(current.getRight());
