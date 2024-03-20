@@ -32,9 +32,9 @@ public class Reader {
 
         String line = br.readLine();
         while (line != null) {
-            String[] pair = line.split(",");
-            System.out.println(pair[0] + " " + pair[1]);
-            words.insert(pair[0], pair[1]);
+            String replacedWords = line.replaceAll("[\\(\\)]", "");
+            String[] pair = replacedWords.split(",");
+            words.insert(pair[0], pair[1].substring(1));
             line = br.readLine();
         }
 

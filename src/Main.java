@@ -10,7 +10,7 @@ public class Main {
         Reader reader = new Reader("diccionario.txt");
         try {
             BinaryTree<String, String> words = reader.readDictionary();
-            words.inOrder();
+            System.out.println(words.inOrder());
         } catch (Exception e) {
             e.printStackTrace();
         }
