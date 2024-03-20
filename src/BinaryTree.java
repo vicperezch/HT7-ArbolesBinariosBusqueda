@@ -110,6 +110,54 @@ public class BinaryTree<K extends Comparable<K>, V extends Comparable <V>> {
 
 
     /**
+     * Obtiene el valor asociado a una llave
+     * @param key Llave a buscar
+     * @return Valor asociado a la llave
+     */
+    public V get(K key) {
+        if (this.root == null) {
+            throw new IllegalArgumentException("El árbol está vacío");
+        }
+
+        if (key.compareTo(this.root.getKey()) == 0) {
+            return this.root.getValue();
+
+        } else {
+            return get(key, this.root);
+        }
+    }
+
+
+    /**
+     * Recorre el árbol de manera recursiva para obtener el valor asociado a una llave
+     * @param key Llave a buscar
+     * @param current Posición actual en los nodos
+     * @return Valor asociado a la llave
+     */
+    private V get(K key, Association<K, V> current) {
+        if (key.compareTo(current.getKey()) == 0) {
+            return current.getValue();
+
+        } else if (key.compareTo(current.getKey()) < 0) {
+            if (current.getLeft() == null) {
+                throw new IllegalArgumentException("El valor no está en el árbol");
+
+            } else {
+                return get(key, current.getLeft());
+            }
+
+        } else {
+            if (current.getRight() == null) {
+                throw new IllegalArgumentException("El valor no está en el árbol");
+
+            } else {
+                return get(key, current.getRight());
+            }
+        }
+    }
+
+
+    /**
      * Recorre el árbol in order
      * @return Contenido del árbol en orden
      */

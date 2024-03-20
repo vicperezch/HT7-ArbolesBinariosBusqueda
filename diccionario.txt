@@ -276,6 +276,7 @@
 (love, amor)
 (romance, romance)
 (friendship, amistad)
+(i, yo)
 (acquaintance, conocido)
 (neighbourhood, vecindario)
 (home, hogar)
